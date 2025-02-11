@@ -2,8 +2,11 @@ package com.websarva.wings.keibapredictsupporter.components
 
 import android.util.Log
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -14,22 +17,23 @@ import com.websarva.wings.keibapredictsupporter.DataClass.HorseData
 import com.websarva.wings.keibapredictsupporter.functions.convertToSeconds
 import com.websarva.wings.keibapredictsupporter.functions.getMinTimeList
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun HorseContent(
     horse: HorseData
 ) {
     Column {
-        Text(text = horse.horseName)
         Row {
-            horse.times.forEachIndexed { index, it ->
-                Log.d("HorseContent", "it: $it")
-                Log.d("HorseContent", "times: ${horse.times}")
+            Text(text = horse.horseName)
+            Spacer(modifier = Modifier.width(8.dp))
+            if(!horse.matched) Text(text = "※初条件")
+        }
+        FlowRow(maxItemsInEachRow = 12) {
+            horse.times.forEach {
                 val minTime = getMinTimeList(horse.times)
-                Log.d("HorseContent", "minTime: $minTime")
                 Text(text = it[0], color = if(minTime == convertToSeconds(it[0])) Color.Red else Color.Black)
                 Spacer(modifier = Modifier.width(8.dp))
             }
-            if(!horse.matched) Text(text = "※初条件")
         }
     }
 }

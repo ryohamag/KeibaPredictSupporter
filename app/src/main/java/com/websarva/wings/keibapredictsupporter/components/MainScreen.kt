@@ -24,13 +24,23 @@ fun MainScreen(
     ) {
         Button(
             onClick = {
-                viewModel.fetchShutubaData("202505010110.json")
+                viewModel.fetchShutubaData("202506010911.json")
             },
         ) {
             Text("リクエストを送信")
         }
 
         Spacer(modifier = Modifier.height(20.dp))
+
+        if (shutubaData.isNotEmpty()) {
+            Row(
+                modifier = Modifier.padding(8.dp)
+            ) {
+                Text(text = shutubaData[0].raceTitle)
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(text = shutubaData[0].raceType + "m")
+            }
+        }
 
         // 受け取ったデータをリストとして表示
         LazyColumn {

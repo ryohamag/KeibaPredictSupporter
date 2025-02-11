@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName
 data class HorseData(
     @SerializedName("horse_url") val horseUrl: String, // 馬のURL
     @SerializedName("horse_name") val horseName: String, // 馬の名前
+    @SerializedName("race_title") val raceTitle: String, // レース名
+    @SerializedName("race_type") val raceType: String, // レース種別
     @SerializedName("results") val pastResults: List<PastResults>, // 過去のレース結果（空の可能性アリ）
     @SerializedName("matching_times") val times: List<List<String>>, // 走破データ（2次元リスト）
     val matched: Boolean // 過去に同じ条件を使っているかどうか
