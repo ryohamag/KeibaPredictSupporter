@@ -37,9 +37,9 @@ fun MainScreen(
             items(shutubaData.size) { index ->
                 val horse = shutubaData[index]
                 ListItem(
-                    headlineContent = { Text(text = "馬名: ${horse.horseName}") },
+                    headlineContent = { HorseContent(horse) },
                     leadingContent = {
-                        Text(text = "${index + 1}")
+                        Text(text = String.format("%2d", index + 1))
                     }
                 )
                 HorizontalDivider()
