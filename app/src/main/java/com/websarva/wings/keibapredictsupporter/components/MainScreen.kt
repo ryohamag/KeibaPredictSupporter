@@ -34,14 +34,12 @@ fun MainScreen(
 
         // 受け取ったデータをリストとして表示
         LazyColumn {
-            items(shutubaData) { horse ->
+            items(shutubaData.size) { index ->
+                val horse = shutubaData[index]
                 ListItem(
                     headlineContent = { Text(text = "馬名: ${horse.horseName}") },
                     leadingContent = {
-                        Icon(
-                            Icons.Filled.Favorite,
-                            contentDescription = "Localized description",
-                        )
+                        Text(text = "${index + 1}")
                     }
                 )
                 HorizontalDivider()
