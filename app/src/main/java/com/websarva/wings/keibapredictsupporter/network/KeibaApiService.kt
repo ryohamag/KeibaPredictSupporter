@@ -1,6 +1,6 @@
 package com.websarva.wings.keibapredictsupporter.network
 
-import com.websarva.wings.keibapredictsupporter.DataClass.ShutubaData
+import com.websarva.wings.keibapredictsupporter.DataClass.HorseData
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -19,7 +19,7 @@ class ApiClient {
         retrofit.create(ApiService::class.java)
     }
 
-    suspend fun fetchShutubaData(filename: String): Response<ShutubaData> {
+    suspend fun fetchShutubaData(filename: String): Response<List<HorseData>> {
         return apiService.fetchShutubaData(filename)
     }
 
@@ -29,5 +29,5 @@ interface ApiService {
     @GET("get_json")
     suspend fun fetchShutubaData(
         @Query("file_name") filename: String,
-    ): Response<ShutubaData>
+    ): Response<List<HorseData>>
 }
