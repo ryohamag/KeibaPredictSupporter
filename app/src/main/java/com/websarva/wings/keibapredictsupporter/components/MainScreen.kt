@@ -24,7 +24,7 @@ fun MainScreen(
     ) {
         Button(
             onClick = {
-                viewModel.fetchShutubaData("202505010401.json")
+                viewModel.fetchShutubaData("202505010110.json")
             },
         ) {
             Text("リクエストを送信")
