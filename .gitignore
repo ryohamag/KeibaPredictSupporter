@@ -13,3 +13,4 @@
 .externalNativeBuild
 .cxx
 local.properties
+app/src/main/java/com/websarva/wings/keibapredictsupporter/network/Secret.kt
