@@ -1,7 +1,10 @@
 package com.websarva.wings.keibapredictsupporter
 
 import android.content.Context
+import android.icu.util.Calendar
 import android.util.Log
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.input.key.type
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -19,13 +22,26 @@ import kotlinx.coroutines.withContext
 import java.io.File
 
 class MainViewModel(private val context: Context): ViewModel() {
+    val calendar = Calendar.getInstance()
+    var year = mutableStateOf(calendar.get(Calendar.YEAR).toString()) //入力された年
+    var racecourse = mutableStateOf("05") //入力された競馬場
+    var round = mutableStateOf("1") //第n回
+    var day = mutableStateOf("1") //第n日
+    var numOfRace = mutableStateOf("1") //何レース目
+
+
     private val _shutubaData = MutableLiveData<List<HorseData>>()
     val shutubaData: LiveData<List<HorseData>>
         get() = _shutubaData
 
     private val apiClient = ApiClient()
 
-    fun fetchShutubaData(filename: String) {
+    fun fetchShutubaData() {
+        val formattedRound = String.format("%02d", round.value.toInt())
+        val formattedDay = String.format("%02d", day.value.toInt())
+        val formattedNumOfRace = String.format("%02d", numOfRace.value.toInt())
+        val filename = "${year.value}${racecourse.value}${formattedRound}${formattedDay}${formattedNumOfRace}.json"
+
         viewModelScope.launch {
             val response = apiClient.fetchShutubaData(filename)
             val horseDataList = response.body()
