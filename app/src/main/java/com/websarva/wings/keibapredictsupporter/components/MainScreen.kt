@@ -140,22 +140,28 @@ fun MainScreen(
             )
         }
 
-        Button(
-            onClick = {
-                viewModel.fetchShutubaData()
-            },
+        Row(
+            modifier = Modifier.padding(16.dp)
         ) {
-            Text("リクエストを送信")
-        }
+            Button(
+                onClick = {
+                    viewModel.fetchShutubaData()
+                },
+                modifier = Modifier.weight(1f)
+            ) {
+                Text("リクエストを送信")
+            }
 
-        Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.width(8.dp))
 
-        Button(
-            onClick = {
-                viewModel.readJsonFromFile("202506010911.json")
-            },
-        ) {
-            Text("ファイルを読み込む")
+            Button(
+                onClick = {
+                    viewModel.readJsonFromFile()
+                },
+                modifier = Modifier.weight(1f)
+            ) {
+                Text("ファイルを読み込む")
+            }
         }
 
         Spacer(modifier = Modifier.height(20.dp))
