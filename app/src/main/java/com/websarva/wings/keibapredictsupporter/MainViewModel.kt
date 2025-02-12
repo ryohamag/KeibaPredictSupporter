@@ -61,9 +61,14 @@ class MainViewModel(private val context: Context): ViewModel() {
         Log.d("MainViewModel", "saveJsonToFile: $jsonData")
     }
 
-    fun readJsonFromFile(fileName: String) {
+    fun readJsonFromFile() {
+        val formattedRound = String.format("%02d", round.value.toInt())
+        val formattedDay = String.format("%02d", day.value.toInt())
+        val formattedNumOfRace = String.format("%02d", numOfRace.value.toInt())
+        val filename = "${year.value}${racecourse.value}${formattedRound}${formattedDay}${formattedNumOfRace}.json"
+
         viewModelScope.launch(Dispatchers.IO) {
-            val file = File(context.filesDir, fileName)
+            val file = File(context.filesDir, filename)
             if (file.exists()) {
                 Log.d("MainViewModel", "readJsonFromFile: File found")
                 try {
