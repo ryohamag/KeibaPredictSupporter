@@ -3,9 +3,7 @@ package com.websarva.wings.keibapredictsupporter
 import android.content.Context
 import android.icu.util.Calendar
 import android.util.Log
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.ui.input.key.type
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,7 +12,6 @@ import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.websarva.wings.keibapredictsupporter.DataClass.HorseData
-import com.websarva.wings.keibapredictsupporter.functions.saveJsonToFile
 import com.websarva.wings.keibapredictsupporter.network.ApiClient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
